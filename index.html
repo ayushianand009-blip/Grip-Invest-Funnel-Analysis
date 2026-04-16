@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grip Invest — Funnel Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Fraunces:ital,wght@0,300;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0f0e;
+    --surface: #121918;
+    --border: #1e2a27;
+    --border-soft: #1a2420;
+    --text: #e8ede8;
+    --muted: #5a7066;
+    --accent: #3ddc84;
+    --gold: #e2b96f;
+    --red: #f05a5a;
+    --white: #f0f4f0;
+    --mono: 'IBM Plex Mono', monospace;
+    --serif: 'Fraunces', Georgia, serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 32px 48px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .header-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--white);
+  }
+
+  h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+  }
+
+  .header-meta {
+    text-align: right;
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 2;
+  }
+
+  .header-meta strong { color: var(--text); font-weight: 500; }
+
+  .tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .tag {
+    border: 1px solid var(--border);
+    padding: 2px 10px;
+    border-radius: 2px;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 28px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section:nth-child(2) { animation-delay: 0.05s; }
+  .section:nth-child(3) { animation-delay: 0.1s; }
+  .section:nth-child(4) { animation-delay: 0.15s; }
+  .section:nth-child(5) { animation-delay: 0.2s; }
+  .section:nth-child(6) { animation-delay: 0.25s; }
+
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .sec-num {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .sec-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .sec-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── PROBLEMS ── */
+  .problems {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  .prob-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--red);
+    padding: 14px 12px;
+    border-radius: 2px;
+  }
+
+  .prob-title {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .prob-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── FUNNEL ── */
+  .funnel-row {
+    display: flex;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .funnel-stage {
+    flex: 1;
+    padding: 14px 12px;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+
+  .funnel-stage:last-child { border-right: none; }
+
+  .fs-label {
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .fs-pct {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .fs-users {
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .fs-drop {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 9.5px;
+    font-weight: 600;
+    padding: 1px 7px;
+    border-radius: 10px;
+  }
+
+  .drop-crit { background: rgba(240,90,90,0.12); color: var(--red); }
+  .drop-high { background: rgba(226,185,111,0.12); color: var(--gold); }
+  .drop-ok   { background: rgba(61,220,132,0.1);  color: var(--accent); }
+
+  .fs-arrow {
+    font-size: 16px;
+    color: var(--border);
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+
+  /* ── DROP-OFFS ── */
+  .dropoffs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .do-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 14px 12px;
+  }
+
+  .do-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .do-stage {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .do-rate {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--red);
+  }
+
+  .do-list {
+    list-style: none;
+  }
+
+  .do-list li {
+    font-size: 11px;
+    color: var(--muted);
+    padding: 3px 0;
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .do-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--border);
+    font-size: 10px;
+  }
+
+  .do-list li strong { color: var(--text); font-weight: 500; }
+
+  /* ── RECS ── */
+  .recs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .rec-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .rec-col-head {
+    padding: 8px 12px;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .rec-col-head.quick  { color: var(--accent); background: rgba(61,220,132,0.05); }
+  .rec-col-head.impact { color: var(--gold);   background: rgba(226,185,111,0.05); }
+
+  .rec-list {
+    list-style: none;
+    padding: 10px 12px;
+  }
+
+  .rec-list li {
+    font-size: 11.5px;
+    color: var(--muted);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border-soft);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .rec-list li:last-child { border-bottom: none; }
+
+  .rec-list li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .rec-list li strong { color: var(--white); font-weight: 500; }
+
+  /* ── FINAL INSIGHT ── */
+  .insight {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 2px;
+    padding: 20px 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .insight-block {}
+
+  .insight-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .insight-text {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--white);
+  }
+
+  .insight-text strong {
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  .insight-divider {
+    width: 1px;
+    background: var(--border);
+    margin: 0 -12px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 9.5px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media print {
+    body { background: white; color: black; }
+    .page { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="header-label">Product Case Study · Grip Invest · Funnel Optimization</div>
+      <h1>Improving Conversion in<br><em>Grip Invest's</em> User Funnel</h1>
+      <div class="tags">
+        <span class="tag">Funnel Analysis</span>
+        <span class="tag">UX Strategy</span>
+        <span class="tag">Growth</span>
+        <span class="tag">Fintech</span>
+      </div>
+    </div>
+    <div class="header-meta">
+      <strong>Timeline</strong><br>3-week sprint<br><br>
+      <strong>Tools</strong><br>Mixpanel · Hotjar · Figma<br><br>
+      <strong>Type</strong><br>Portfolio Project
+    </div>
+  </div>
+
+  <!-- 01 PROBLEM SNAPSHOT -->
+  <div class="section">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <span class="sec-title">Problem Snapshot</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="problems">
+      <div class="prob-card">
+        <div class="prob-title">Trust Deficit</div>
+        <div class="prob-desc">No SEBI badge, AUM, or social proof above the fold. First-timers bounce before reading.</div>
+      </div>
+      <div class="prob-card">
+        <div class="prob-title">KYC Friction</div>
+        <div class="prob-desc">No progress bar, no save-and-resume. Users hit a wall and don't come back.</div>
+      </div>
+      <div class="prob-card">
+        <div class="prob-title">Decision Paralysis</div>
+        <div class="prob-desc">15+ deals, zero curation. No "start here" signal for new investors.</div>
+      </div>
+      <div class="prob-card">
+        <div class="prob-title">Zero Activation Hook</div>
+        <div class="prob-desc">Post-KYC = blank dashboard. No guided path, no nudge to first investment.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 FUNNEL -->
+  <div class="section">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <span class="sec-title">Funnel Visualization</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-stage">
+        <div class="fs-label">Landing Page</div>
+        <div class="fs-pct" style="color:var(--accent)">100%</div>
+        <div class="fs-users">10,000 visitors</div>
+        <span class="fs-drop drop-ok">Baseline</span>
+      </div>
+      <div class="fs-arrow">›</div>
+      <div class="funnel-stage">
+        <div class="fs-label">Signup</div>
+        <div class="fs-pct" style="color:var(--text)">35%</div>
+        <div class="fs-users">3,500 users</div>
+        <span class="fs-drop drop-crit">−65% drop</span>
+      </div>
+      <div class="fs-arrow">›</div>
+      <div class="funnel-stage">
+        <div class="fs-label">KYC Complete</div>
+        <div class="fs-pct" style="color:var(--gold)">14%</div>
+        <div class="fs-users">1,400 users</div>
+        <span class="fs-drop drop-crit">−60% drop ⚠</span>
+      </div>
+      <div class="fs-arrow">›</div>
+      <div class="funnel-stage">
+        <div class="fs-label">Browse Deals</div>
+        <div class="fs-pct" style="color:var(--gold)">9%</div>
+        <div class="fs-users">900 users</div>
+        <span class="fs-drop drop-high">−35% drop</span>
+      </div>
+      <div class="fs-arrow">›</div>
+      <div class="funnel-stage">
+        <div class="fs-label">1st Investment</div>
+        <div class="fs-pct" style="color:var(--red)">4%</div>
+        <div class="fs-users">400 investors</div>
+        <span class="fs-drop drop-crit">Overall</span>
+      </div>
+    </div>
+    <div style="margin-top:8px; font-size:10.5px; color:var(--muted); padding-left:2px;">
+      <strong style="color:var(--text)">96% of visitors never invest.</strong> · Landing→Signup and KYC alone account for 86% of total loss.
+    </div>
+  </div>
+
+  <!-- 03 DROP-OFFS -->
+  <div class="section">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <span class="sec-title">Top 3 Drop-off Insights</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="dropoffs">
+      <div class="do-card">
+        <div class="do-header">
+          <div class="do-stage">Landing → Signup</div>
+          <div class="do-rate">−65%</div>
+        </div>
+        <ul class="do-list">
+          <li>Value prop is vague — <strong>"alternative investments"</strong> means nothing</li>
+          <li>No trust signals above fold (AUM, SEBI, investor count)</li>
+          <li><em>Psychology:</em> unfamiliarity triggers exit before scroll</li>
+        </ul>
+      </div>
+      <div class="do-card">
+        <div class="do-header">
+          <div class="do-stage">Signup → KYC</div>
+          <div class="do-rate">−60%</div>
+        </div>
+        <ul class="do-list">
+          <li>No progress indicator — effort feels <strong>open-ended</strong></li>
+          <li>No save-and-resume; one failed upload = restart</li>
+          <li><em>Psychology:</em> perceived effort far exceeds perceived reward</li>
+        </ul>
+      </div>
+      <div class="do-card">
+        <div class="do-header">
+          <div class="do-stage">Browse → Invest</div>
+          <div class="do-rate">−56%</div>
+        </div>
+        <ul class="do-list">
+          <li>15+ deals, no curation → <strong>choice overload</strong></li>
+          <li>Jargon (yield, tenor, coupon) not explained inline</li>
+          <li><em>Psychology:</em> decision paralysis kills intent</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 RECOMMENDATIONS -->
+  <div class="section">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <span class="sec-title">Recommendations</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="recs-grid">
+      <div class="rec-col">
+        <div class="rec-col-head quick">⚡ Quick Wins — Ship in Sprint 1</div>
+        <ul class="rec-list">
+          <li><strong>Rewrite landing headline</strong> → outcome-led: "Earn 11–13% p.a. with Secured Bonds"</li>
+          <li><strong>Add social proof strip</strong> → "₹500Cr+ invested · 50K investors · SEBI registered" above the fold</li>
+          <li><strong>KYC progress bar</strong> → "Step 2 of 4 · ~3 mins left" + save-and-resume state</li>
+        </ul>
+      </div>
+      <div class="rec-col">
+        <div class="rec-col-head impact">🚀 High-Impact — Sprint 2–3</div>
+        <ul class="rec-list">
+          <li><strong>"First Investment Picks"</strong> → default deals view for new users (3 curated deals, low min)</li>
+          <li><strong>Returns simulator</strong> → "Invest ₹25K → earn ₹X by [date]" — inline on deal cards</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 FINAL INSIGHT -->
+  <div class="section">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <span class="sec-title">Final Insight</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="insight">
+      <div class="insight-block">
+        <div class="insight-label">Core Problem</div>
+        <div class="insight-text">
+          Grip Invest loses <strong>96% of visitors</strong> before a rupee is invested — not because the product is weak, but because the <strong>journey to trust it is broken.</strong>
+        </div>
+      </div>
+      <div class="insight-block">
+        <div class="insight-label">Biggest Opportunity</div>
+        <div class="insight-text">
+          Fix KYC friction + add a curated first-investment flow. KYC 40%→62% and browse-to-invest 44%→60% means <strong>overall conversion more than doubles</strong> — without spending a rupee more on acquisition.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>Grip Invest · Funnel Analysis · Portfolio Case Study</span>
+    <span>Frameworks: Jobs-to-be-Done · BJ Fogg Behavior Model · Hick's Law</span>
+  </div>
+
+</div>
+</body>
+</html>
